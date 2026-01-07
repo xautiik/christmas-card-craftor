@@ -54,6 +54,7 @@ const builtInImages = [
 export default function App() {
   const [recipient, setRecipient] = useState("ስም");
   const [message, setMessage] = useState(defaultMessage);
+  const [recipientGender, setRecipientGender] = useState<"neutral" | "female" | "male">("neutral");
   const [previewRecipient, setPreviewRecipient] = useState("ስም");
   const [previewMessage, setPreviewMessage] = useState(defaultMessage);
   const [verseRef, setVerseRef] = useState("");
@@ -122,7 +123,8 @@ export default function App() {
     setErrorMessage("");
     setStatus("Asking Gemini for a wish…");
     try {
-      const aiText = await requestGeminiGreeting(recipient || fallbackRecipient, previewMessage || defaultMessage, preferAmharic ? "amharic" : "auto");
+      const toneSeed = `${previewMessage || defaultMessage} | recipient gender: ${recipientGender}`;
+      const aiText = await requestGeminiGreeting(recipient || fallbackRecipient, toneSeed, preferAmharic ? "amharic" : "auto", recipientGender);
       setMessage(aiText);
       setPreviewMessage(aiText);
       setPreviewRecipient(recipient.trim() || fallbackRecipient);
@@ -336,6 +338,33 @@ export default function App() {
                       value={recipient}
                       onChange={(event) => setRecipient(event.target.value)}
                     />
+                    <div className="grid gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 p-3 text-xs text-slate-200">
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold uppercase tracking-[0.25em] text-slate-400">Recipient gender</span>
+                        <span className="text-[11px] text-slate-500">Helps the AI choose tone</span>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2 text-sm font-semibold">
+                        {[
+                          { id: "neutral", label: "Neutral" },
+                          { id: "female", label: "Female" },
+                          { id: "male", label: "Male" }
+                        ].map((option) => (
+                          <button
+                            key={option.id}
+                            type="button"
+                            onClick={() => setRecipientGender(option.id as "neutral" | "female" | "male")}
+                            className={clsx(
+                              "rounded-xl border px-3 py-2 transition",
+                              recipientGender === option.id
+                                ? "border-emerald-400 bg-emerald-400/20 text-emerald-50"
+                                : "border-slate-800 bg-slate-900/60 text-slate-200 hover:border-emerald-400/60"
+                            )}
+                          >
+                            {option.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <label htmlFor="message-input" className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">
@@ -680,8 +709,8 @@ export default function App() {
                     <div className="flex items-center gap-2 text-amber-200">
                       <p className="text-xs uppercase tracking-[0.35em]">{previewVerseText || "Nativity verse"}</p>
                     </div>
-                    <div className="mt-2 flex justify-end">
-                      <span className="rounded-full bg-gradient-to-r from-amber-300 to-rose-300 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.28em] text-slate-900 shadow-md">
+                    <div className="mt-2 flex min-w-0 justify-end">
+                      <span className="inline-flex max-w-full flex-wrap justify-center break-words whitespace-normal rounded-full bg-gradient-to-r from-amber-300 to-rose-300 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.16em] text-slate-900 shadow-md">
                         {previewVerseRef || "Luke 2:10-11"}
                       </span>
                     </div>
