@@ -35,12 +35,12 @@ const shareTargets: ShareTarget[] = [
   {
     label: "LinkedIn",
     icon: Linkedin,
-    url: (payload) => `https://www.linkedin.com/sharing/share-offsite/?url=https://ethio-gena-card.local&summary=${payload}`
+    url: (payload) => `https://www.linkedin.com/sharing/share-offsite/?url=https://gena-card.vercel.app&summary=${payload}`
   },
   {
     label: "Facebook",
     icon: Facebook,
-    url: (payload) => `https://www.facebook.com/sharer/sharer.php?u=https://ethio-gena-card.local&quote=${payload}`
+    url: (payload) => `https://www.facebook.com/sharer/sharer.php?u=https://gena-card.vercel.app&quote=${payload}`
   }
 ];
 
@@ -107,7 +107,7 @@ export default function App() {
   );
 
   const shareEncoded = encodeURIComponent(shareNote);
-  const shareLink = typeof window !== "undefined" ? window.location.href : "https://ethio-gena-card.local";
+  const shareLink = "https://gena-card.vercel.app";
 
   const clearStatus = (message: string) => {
     setStatus(message);
