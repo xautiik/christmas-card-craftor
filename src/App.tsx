@@ -514,9 +514,11 @@ export default function App() {
                           onClick={() => handleBuiltInSelect(item.url)}
                           className="group flex flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-950/70 text-left shadow-sm transition hover:border-emerald-400"
                         >
-                          <div
-                            className="h-28 w-full bg-cover bg-center"
-                            style={{ backgroundImage: `url(${item.url})` }}
+                          <img
+                            src={item.url}
+                            loading="lazy"
+                            alt={item.label}
+                            className="h-28 w-full object-cover"
                           />
                           <div className="px-3 py-2 text-xs font-semibold text-slate-100 group-hover:text-emerald-200">
                             {item.label}
@@ -568,7 +570,7 @@ export default function App() {
                         Native share
                       </button>
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
+                   {/* <div className="grid grid-cols-2 gap-2">
                       {shareTargets.map((target) => (
                         <button
                           key={target.label}
@@ -583,7 +585,7 @@ export default function App() {
                           <Share2 size={18} className="text-emerald-200" />
                         </button>
                       ))}
-                    </div>
+                    </div> */}
 
                     <div className="flex flex-wrap items-center gap-3">
                       <button
@@ -593,13 +595,13 @@ export default function App() {
                       >
                         <Clipboard size={16} /> Copy blessing
                       </button>
-                      <button
+                      {/*<button
                         onClick={handleCopyLink}
                         type="button"
                         className="flex items-center gap-2 rounded-2xl border border-slate-800 bg-gradient-to-r from-amber-300/30 via-transparent to-amber-200/40 px-4 py-2 text-sm font-semibold text-white"
                       >
                         <LinkIcon size={16} /> Copy link
-                      </button>
+                      </button> */}
                       <p className="text-xs text-slate-400">{status || "Ready to share or download"}</p>
                     </div>
                   </div>
@@ -687,9 +689,12 @@ export default function App() {
                     <p className="text-sm leading-relaxed text-slate-200">{previewMessage}</p>
                     <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-slate-950/70">
                       {imageSource ? (
-                        <div
-                          className="w-full"
-                          style={{ backgroundImage: `url(${imageSource})`, backgroundSize: "cover", backgroundPosition: "center", height: `${imageHeight}px` }}
+                        <img
+                          src={imageSource}
+                          loading="lazy"
+                          alt="Card imagery"
+                          className="w-full object-cover"
+                          style={{ height: `${imageHeight}px` }}
                         />
                       ) : (
                         <div
