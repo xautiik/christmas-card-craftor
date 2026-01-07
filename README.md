@@ -15,7 +15,7 @@ npm run preview
 ## Configure Gemini
 
 - Create `.env` with `VITE_GEMINI_API_KEY=<your-key>`.
-- Uses `@google/genai` with `gemini-2.5-flash-lite` for blessings and nativity verses.
+- Uses `@google/genai` with `gemini-2.5` for blessings and nativity verses.
 
 ## Key features
 

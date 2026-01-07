@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const TEXT_MODEL = "gemini-2.5-flash"; // Standard Flash (not Lite) for better free limits
+const TEXT_MODEL = "gemini-2.5"; // Updated to use gemini-2.5
 
 function requireKey() {
   if (!GEMINI_API_KEY) {
