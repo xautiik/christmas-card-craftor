@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const TEXT_MODEL = "gemini-2.5-flash";
+const TEXT_MODEL = "gemini-2.5-flash-lite";
 
 function requireKey() {
   if (!GEMINI_API_KEY) {
