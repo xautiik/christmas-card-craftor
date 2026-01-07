@@ -23,7 +23,7 @@ export async function requestGeminiGreeting(recipient: string, toneSeed: string,
   const languageCue =
     language === "amharic"
       ? "Respond fully in Amharic (Ge'ez script). Compose as a native Amharic Gena greeting—natural phrasing, seasonal blessings, and cultural cues (bonfire/coffee/የልደት ደስታ)."
-      : "Respond in the language that best fits the name and seed text.";
+      : "Respond in clear, natural English only. Do not output Amharic or Ge'ez script.";
   const prompt = `Write a short, two-sentence Ethiopian Christmas (Gena) greeting that feels cozy and modern. Address the note to "${recipient}". Keep it warm, mention coffee ceremony or bonfire ambience, and blend Ethiopian colors (green, gold, red) into imagery. Stay inclusive and avoid religious dogma. Do not mention New Year—this is only about Christmas/Gena. ${languageCue} Prior wording: ${toneSeed}`;
   const ai = getClient();
   const response = await ai.models.generateContent({
