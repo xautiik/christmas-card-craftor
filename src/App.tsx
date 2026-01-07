@@ -629,7 +629,7 @@ export default function App() {
 
               <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-950/50 px-3 py-3 text-sm text-slate-200">
                 <div className="text-xs text-slate-400">
-                  Section {currentSectionIndex + 1} of {formSections.length}: <span className="font-semibold text-slate-100">{formSections[currentSectionIndex]?.label}</span>
+                  Step {currentSectionIndex + 1} of {formSections.length}: <span className="font-semibold text-slate-100">{formSections[currentSectionIndex]?.label}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
