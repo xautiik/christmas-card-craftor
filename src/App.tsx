@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { toPng } from "html-to-image";
 import clsx from "clsx";
 import type { LucideIcon } from "lucide-react";
-import { Clipboard, Download, Facebook, Gift, Link as LinkIcon, Linkedin, MessageSquare, Share2, Snowflake, Sparkles, Twitter } from "lucide-react";
+import { Clipboard, Download, Facebook, Gift, Link as LinkIcon, Linkedin, MessageSquare, Share2, Snowflake, Sparkles, Twitter, Github } from "lucide-react";
 import { Badge } from "./components/Badge";
 import { requestGeminiGreeting, requestGeminiVerse } from "./lib/gemini";
 
@@ -109,6 +109,7 @@ export default function App() {
 
   const shareEncoded = encodeURIComponent(shareNote);
   const shareLink = "https://gena-card.vercel.app";
+  const repoUrl = import.meta.env.VITE_GITHUB_URL || "https://github.com";
 
   const clearStatus = (message: string) => {
     setStatus(message);
@@ -743,6 +744,16 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          <a
+            href={repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mx-auto mt-6 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-semibold text-white shadow-card-glow transition hover:border-emerald-300 hover:bg-slate-800"
+          >
+            <Github size={16} />
+            View code on GitHub
+          </a>
         </div>
       </div>
     </div>
